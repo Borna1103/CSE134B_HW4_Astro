@@ -1,0 +1,90 @@
+---
+const { projectName, skills, description, media } = Astro.props;
+---
+
+<style>
+  .project-box {
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    background-color: rgb(30,41,59);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    
+  }
+
+  .project-box:hover {
+    background-color: rgb(45, 55, 72);
+    transform: scale(1.1);
+    opacity: 0.9;
+  }
+
+  .project-header {
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 10px;
+  }
+
+  .project-description {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    color: white;
+  }
+
+  .skills-list {
+    margin-bottom: 15px;
+  }
+
+  .skills-list span {
+    background-color: #e0e0e0;
+    padding: 5px 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    color: #333;
+  }
+
+  .media {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .media img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .media video {
+    max-width: 100%;
+    border-radius: 8px;
+  }
+</style>
+
+<div class="project-box">
+  <div class="project-header">{projectName}</div>
+  <div class="project-description">{description}</div>
+
+  <div class="skills-list">
+    <strong>Skills Used:</strong>
+    {skills.map(skill => (
+      <span>{skill}</span>
+    ))}
+  </div>
+
+  <div class="media">
+    {media.map(item => (
+      item.type === 'image' ? (
+        <img src={item.src} alt={item.alt || 'Project Media'} />
+      ) : item.type === 'video' ? (
+        <video controls>
+          <source src={item.src} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      ) : null
+    ))}
+  </div>
+</div>

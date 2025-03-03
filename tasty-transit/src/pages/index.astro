@@ -1,0 +1,40 @@
+---
+import Welcome from '../components/Welcome.astro';
+import Layout from '../layouts/Layout.astro';
+import ProjectDisplay from '../components/ProjectDisplay.astro';
+
+// Example data to pass as props to the component
+const project = {
+  projectName: 'My Awesome Game',
+  skills: ['JavaScript', 'React', 'Node.js'],
+  description: 'A fun game I built using React for the frontend and Node.js for the backend.',
+  media: [
+    { type: 'image', src: '/images/game-screenshot.png', alt: 'Screenshot of the game' },
+    { type: 'video', src: '/videos/game-play.mp4' }
+  ]
+};
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+---
+
+<Layout>
+	<div class="project-container">
+		<ProjectDisplay 
+			
+			projectName={project.projectName} 
+			skills={project.skills} 
+			description={project.description} 
+			media={project.media} 
+		/>
+	</div>
+</Layout>
+
+<style>
+	.project-container {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    min-height: 100vh; /* Ensures the container takes full viewport height */
+  }
+</style>
